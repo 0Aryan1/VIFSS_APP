@@ -31,11 +31,17 @@ const Home = () => {
 
       <FilterGif showTrending/>
 
-      <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
-        {gifs.map((gif) => {
-           return <Gif gif={gif} key={gif.tittle}/>
-        })}
-      </div>
+      {filter === "text" ? (
+        <div className="flex justify-center items-center h-40">
+          <span className="text-2xl font-bold">Coming soon ☺️.</span>
+        </div>
+      ) : (
+        <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
+          {gifs.map((gif) => {
+             return <Gif gif={gif} key={gif.tittle}/>
+          })}
+        </div>
+      )}
     </div>
   )
 }
