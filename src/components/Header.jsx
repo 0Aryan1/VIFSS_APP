@@ -93,9 +93,9 @@ const Header = () => {
         {/* Mobile Favorites */}
         {favorites.length > 0 && (
           <div className="block lg:hidden">
-            <div className="w-full h-12 bg-gray-700 hover:bg-gradient-to-tr from-pink-600 to-pink-400 flex items-center justify-center cursor-pointer rounded">
-              <Link to="/favorites">Favorite GIFs</Link>
-            </div>
+            <Link to="/favorites" className="w-full h-12 bg-gray-700 font-bold hover:bg-gradient-to-tr from-pink-600 to-pink-400 flex items-center justify-center cursor-pointer rounded block">
+              Favorite GIFs
+            </Link>
           </div>
         )}
         <GifSearch filter={filter} setFilter={setFilter}/>
