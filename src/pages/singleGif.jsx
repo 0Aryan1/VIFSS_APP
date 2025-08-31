@@ -4,7 +4,7 @@ import Gif from '../components/Gif'
 import { GifState } from '../context/GifContext'
 import { HiMiniChevronDown, HiMiniChevronUp, HiMiniHeart } from 'react-icons/hi2'
 import FollowOn from '../components/FollowOn'
-import { HiOutlineExternalLink } from 'react-icons/hi'
+import { MdOutlineFileDownload } from "react-icons/md";
 import { FaPaperPlane } from 'react-icons/fa6'
 import { IoCodeSharp } from 'react-icons/io5'
 import FilterGif from '../components/FilterGif'
@@ -232,8 +232,7 @@ const GifPage = () => {
            <Gif gif={gif} hover={false} />
 
                {/* Mobile user details + favorite    */}
-               {(<div className=''>
-                <div className='mb-2 font-normal text-gray-400 text-center bg-gradient-to-r from-gray-700/40 to-gray-600/40 rounded-lg'> Tap and Hold to Copy GIF</div>
+               
                 <div className="flex sm:hidden items-center justify-between mt-3">
                   {gif?.user && (<div className="flex gap-1">
                     <img
@@ -260,12 +259,12 @@ const GifPage = () => {
               onClick={downloadGif}
               className="flex gap-5 items-center font-bold text-lg"
             >
-              <HiOutlineExternalLink size={25} />
+              <MdOutlineFileDownload size={25} />
               
             </button>
                 </div>
-                </div>
-               )}
+                
+               
           </div>
 
           {/* Desktop Action Buttons */}
@@ -284,7 +283,7 @@ const GifPage = () => {
               onClick={downloadGif}
               className="flex gap-5 items-center font-bold text-lg"
             >
-              <HiOutlineExternalLink size={25} />
+              <MdOutlineFileDownload size={25} />
               Download
             </button>
             {/* <button
