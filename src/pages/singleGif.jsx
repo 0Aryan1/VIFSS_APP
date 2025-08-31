@@ -271,19 +271,19 @@ const GifPage = () => {
           <div className="hidden sm:flex flex-col gap-5 mt-6">
             <button
               onClick={() => addToFavorites(gif.id)}
-              className="flex gap-5 items-center font-bold text-lg"
+              className="flex gap-5 items-center  duration-100 font-bold text-lg"
             >
               <HiMiniHeart
                 size={30}
-                className={`${favorites.includes(gif.id) ? "text-red-500" : ""}`}
+                className={`${favorites.includes(gif.id) ? "text-red-500" : ""} hover:text-pink-700 hover:size-10 duration-200`}
               />
               Favorite
             </button>
-            <button
+            <button 
               onClick={downloadGif}
-              className="flex gap-5 items-center font-bold text-lg"
+              className="flex gap-5  duration-100 items-center font-bold text-lg"
             >
-              <MdOutlineFileDownload size={25} />
+              <MdOutlineFileDownload size={25} className='hover:text-blue-600 hover:size-10 duration-200'  />
               Download
             </button>
             {/* <button
