@@ -230,6 +230,7 @@ const GifPage = () => {
                       size={30}
                       className={`${favorites.includes(gif.id) ? "text-red-500" : ""}`}
                     />
+                    Favorite
                   </button>
                 </div>
                 </div>
