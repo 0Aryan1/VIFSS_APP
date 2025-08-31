@@ -15,23 +15,46 @@ const GifPage = () => {
   const [gif, setGif] = useState({})
   const [relatedGifs, setRelatedGifs] = useState([])
   const [readMore, setReadMore] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   const { gf, addToFavorites, favorites } = GifState()
 
   const fetchGif = async () => {
-    const gifId = slug.split("-")
-    const { data } = await gf.gif(gifId[gifId.length - 1])
-    const { data: related } = await gf.related(gifId[gifId.length - 1], {
-      // limit: 10,
-    })
-    setGif(data)
-    setRelatedGifs(related)
+    try {
+      setLoading(true)
+      // Ensure type and slug are available before making API calls
+      if (!type || !slug) {
+        return;
+      }
+
+      const gifId = slug.split("-")
+      const { data } = await gf.gif(gifId[gifId.length - 1])
+      const { data: related } = await gf.related(gifId[gifId.length - 1], {
+        // limit: 10,
+      })
+      setGif(data)
+      setRelatedGifs(related || [])
+      setLoading(false)
+    } catch (err) {
+      console.error("Error fetching gif:", err)
+      setError("Failed to load GIF. Please try again.")
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
-    if (!contentType.includes(type)) {
-      throw new Error("invalid content type")
+    // Ensure we have valid params before attempting to fetch
+    if (!type || !slug) {
+      return;
     }
+    
+    if (!contentType.includes(type)) {
+      setError("Invalid content type")
+      setLoading(false)
+      return;
+    }
+    
     fetchGif()
     window.scroll(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,6 +86,29 @@ const GifPage = () => {
     // } catch (error) {
     //   console.error("Error copying embed code:", error)
     // }
+  }
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-xl text-red-500">{error}</div>
+      </div>
+    );
+  }
+
+  // Don't render if gif is not yet available
+  if (!gif || Object.keys(gif).length === 0) {
+    return null;
   }
 
   return (
@@ -108,7 +154,7 @@ const GifPage = () => {
 
         <FollowOn />
         <div className="divider"></div>
-{/*         {gif?.source && (
+        {/* {gif?.source && (
           <div>
             <span className="faded-text">Source</span>
             <div className="flex items-center text-sm font-bold gap-1">
@@ -182,9 +228,12 @@ const GifPage = () => {
         <div className="mt-6">
           <span className="font-extrabold">Related GIFs</span>
           <div className="columns-2 md:columns-3 gap-2">
-            {relatedGifs.slice(1).map((gif) => (
-              <Gif gif={gif} key={gif.id} />
-            ))}
+            {relatedGifs.length > 0 ? 
+              relatedGifs.slice(1).map((relatedGif) => (
+                <Gif gif={relatedGif} key={relatedGif.id} />
+              )) : 
+              <div>No related GIFs found</div>
+            }
           </div>
         </div>
       </div>
