@@ -39,7 +39,7 @@ const FilterGif = ({alignLeft = false, showTrending = false}) => {
           <span className="font-semibold text-gray-400">Trending</span>
         </span>
       )}
-      <div className="flex min-w-80 rounded-full bg-gray-800">
+      <div className="flex min-w-80 rounded-full bg-gray-700">
         {filters.map((f) => {
           return (
             <span
