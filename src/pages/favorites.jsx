@@ -5,16 +5,18 @@ import Gif from '../components/Gif';
 const Favorites = () => {
     const {gf, favorites} = GifState();
     const [favoriteGIFs, setFavoriteGIFs] = useState([]);
-  
-    const fetchFavoriteGIFs = async () => {
-      const {data: gifs} = await gf.gifs(favorites);
-      setFavoriteGIFs(gifs);
-    };
-  
+
     useEffect(() => {
+      const fetchFavoriteGIFs = async () => {
+        if (favorites.length === 0) {
+          setFavoriteGIFs([]);
+          return;
+        }
+        const {data: gifs} = await gf.gifs(favorites);
+        setFavoriteGIFs(gifs);
+      };
       fetchFavoriteGIFs();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [favorites, gf]);
   
 
   return (
