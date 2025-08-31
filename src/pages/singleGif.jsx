@@ -108,6 +108,17 @@ const GifPage = () => {
 
         <FollowOn />
         <div className="divider"></div>
+{/*         {gif?.source && (
+          <div>
+            <span className="faded-text">Source</span>
+            <div className="flex items-center text-sm font-bold gap-1">
+              <HiOutlineExternalLink size={25} />
+              <a href={gif.source} target="_blank" rel="noreferrer" className="truncate">
+                {gif.source}
+              </a>
+            </div>
+          </div>
+        )} */}
       </div>
 
       {/* Main content */}
