@@ -32,20 +32,24 @@ const Search = () => {
   return (
     <div>
       <div className="my-4">
-      <h2 className="text-5xl pb-3 font-extrabold">{query}</h2>
-      <FilterGif alignLeft={true} />
-      {searchResults.length > 0 ? (
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-2">
-          {searchResults.map((gif) => (
-            <Gif gif={gif} key={gif.id} />
-          ))}
-        </div>
-      ) : (
-        <span>
-          No GIFs found for {query}. Try searching for Stickers instead?
-        </span>
-      )}
-    </div>
+        <h2 className="text-5xl pb-3 font-extrabold">{query}</h2>
+        <FilterGif alignLeft={true} />
+        {filter === "text" ? (
+          <div className="flex justify-center items-center h-40">
+            <span className="text-2xl font-bold">Coming soon ☺️.</span>
+          </div>
+        ) : searchResults.length > 0 ? (
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-2">
+            {searchResults.map((gif) => (
+              <Gif gif={gif} key={gif.id} />
+            ))}
+          </div>
+        ) : (
+          <span>
+            No GIFs found for {query}. Try searching for Stickers instead?
+          </span>
+        )}
+      </div>
     </div>
   )
 }
