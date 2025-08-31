@@ -7,18 +7,20 @@ import FollowOn from '../components/FollowOn'
 import { HiOutlineExternalLink } from 'react-icons/hi'
 import { FaPaperPlane } from 'react-icons/fa6'
 import { IoCodeSharp } from 'react-icons/io5'
+import FilterGif from '../components/FilterGif'
 
-const contentType = ["gifs", "stickers", "texts"]
+const contentType = ["gifs", "stickers", "text"]
 
 const GifPage = () => {
   const { type, slug } = useParams()
+
   const [gif, setGif] = useState({})
   const [relatedGifs, setRelatedGifs] = useState([])
   const [readMore, setReadMore] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const { gf, addToFavorites, favorites } = GifState()
+  const { gf, addToFavorites, filter, setGifs, favorites } = GifState()
 
   const fetchGif = async () => {
     try {
@@ -30,9 +32,18 @@ const GifPage = () => {
 
       const gifId = slug.split("-")
       const { data } = await gf.gif(gifId[gifId.length - 1])
-      const { data: related } = await gf.related(gifId[gifId.length - 1], {
-        // limit: 10,
-      })
+      // Only pass type if supported by Giphy API
+      let related;
+      if (filter === "gifs" || filter === "stickers") {
+        const res = await gf.related(gifId[gifId.length - 1], {
+          type: filter,
+          // limit: 10,
+        });
+        related = res.data;
+      } else {
+        // For unsupported types, show message or fallback
+        related = [];
+      }
       setGif(data)
       setRelatedGifs(related || [])
       setLoading(false)
@@ -42,6 +53,22 @@ const GifPage = () => {
       setLoading(false)
     }
   }
+
+  const fetchTrendingGifs = async () => {
+    const {data} = await gf.trending({
+      limit: 20,
+      type: filter,
+      rating: "g",
+    })
+
+    setGifs(data)
+  }
+
+  useEffect(() => {
+      fetchTrendingGifs()
+      fetchGif()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filter]);
 
   useEffect(() => {
     // Ensure we have valid params before attempting to fetch
@@ -114,7 +141,7 @@ const GifPage = () => {
   }
 
   return (
-    <div className="grid grid-cols-4 my-10 gap-4">
+  <div className="grid grid-cols-4 my-10 gap-4">
       {/* Left side (User details & Source) */}
       <div className="hidden sm:block">
         {gif?.user && (
@@ -156,6 +183,8 @@ const GifPage = () => {
 
         <FollowOn />
         <div className="divider"></div>
+        {/* <FilterGif showTrending/> */}
+
         {/* {gif?.source && (
           <div>
             <span className="faded-text">Source</span>
@@ -236,15 +265,21 @@ const GifPage = () => {
           </div>
         </div>
 
+        {/* Centered FilterGif above recommended section */}
+        <div className="mt-6 mb-4 flex justify-center items-center w-full">
+          <FilterGif />
+        </div>
         {/* Related GIFs */}
-        <div className="mt-6">
-          <span className="font-extrabold">Related GIFs</span>
+        <div className="mt-2">
+          <span className="font-extrabold">Recommended GIFs</span>
           <div className="columns-2 md:columns-3 gap-2">
-            {relatedGifs.length > 0 ? 
+            {(filter === "text") ? (
+              <div className='text-2xl font-bold'>Coming soon ☺️.</div>
+            ) : relatedGifs.length > 0 ? 
               relatedGifs.slice(1).map((relatedGif) => (
                 <Gif gif={relatedGif} key={relatedGif.id} />
               )) : 
-              <div>No related GIFs found</div>
+              <div>No recommended GIFs found</div>
             }
           </div>
         </div>
