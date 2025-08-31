@@ -175,10 +175,12 @@ const GifPage = () => {
           {/* Gif & Mobile UI */}
           <div className="w-full sm:w-3/4">
            <div className="faded-text truncate mb-2">{gif.title}</div>
+           
            <Gif gif={gif} hover={false} />
 
                {/* Mobile user details + favorite */}
-               {gif?.user && (
+               {gif?.user && (<div className=''>
+                <div className='mb-2 font-normal text-gray-400 text-center bg-gradient-to-r from-gray-700/40 to-gray-600/40 rounded-lg'> Tap and Hold to Copy GIF</div>
                 <div className="flex sm:hidden items-center justify-between mt-3">
                   <div className="flex gap-1">
                     <img
@@ -200,6 +202,7 @@ const GifPage = () => {
                       className={`${favorites.includes(gif.id) ? "text-red-500" : ""}`}
                     />
                   </button>
+                </div>
                 </div>
                )}
           </div>
