@@ -22,6 +22,30 @@ const GifPage = () => {
 
   const { gf, addToFavorites, filter, setGifs, favorites } = GifState()
 
+    // --- Download functionality ---
+    const downloadGif = async () => {
+      try {
+        const imageUrl = gif?.images?.original?.url;
+        if (!imageUrl) {
+          alert("No image URL found.");
+          return;
+        }
+        const response = await fetch(imageUrl, { mode: 'cors' });
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = gif.title ? `${gif.title}.gif` : 'download.gif';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        alert("Failed to download GIF. CORS or network error.");
+        console.error("Download error:", error);
+      }
+    }
+
   const fetchGif = async () => {
     try {
       setLoading(true)
@@ -230,8 +254,15 @@ const GifPage = () => {
                       size={30}
                       className={`${favorites.includes(gif.id) ? "text-red-500" : ""}`}
                     />
-                    Favorite
+                    
                   </button>
+                  <button
+              onClick={downloadGif}
+              className="flex gap-5 items-center font-bold text-lg"
+            >
+              <HiOutlineExternalLink size={25} />
+              
+            </button>
                 </div>
                 </div>
                )}
@@ -248,6 +279,13 @@ const GifPage = () => {
                 className={`${favorites.includes(gif.id) ? "text-red-500" : ""}`}
               />
               Favorite
+            </button>
+            <button
+              onClick={downloadGif}
+              className="flex gap-5 items-center font-bold text-lg"
+            >
+              <HiOutlineExternalLink size={25} />
+              Download
             </button>
             {/* <button
               onClick={shareGif}
