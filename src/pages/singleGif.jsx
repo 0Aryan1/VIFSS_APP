@@ -259,7 +259,7 @@ const GifPage = () => {
               onClick={downloadGif}
               className="flex gap-5 items-center font-bold text-lg"
             >
-              <MdOutlineFileDownload size={25} />
+              <MdOutlineFileDownload size={30} />
               
             </button>
                 </div>
@@ -283,7 +283,7 @@ const GifPage = () => {
               onClick={downloadGif}
               className="flex gap-5  duration-100 items-center font-bold text-lg"
             >
-              <MdOutlineFileDownload size={25} className='hover:text-blue-600 hover:size-10 duration-200'  />
+              <MdOutlineFileDownload size={30} className='hover:text-blue-600 hover:size-10 duration-200'  />
               Download
             </button>
             {/* <button
