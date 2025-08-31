@@ -24,7 +24,7 @@ const Header = () => {
     <nav>
       <div className="relative flex gap-4 justify-between items-center mb-2">
         <Link to={"/"} className="flex gap-2">
-            <img  src="https://www.sarasoueidan.com/assets/images/svg-vs-gif--animation-example.gif" alt="Giphy Logo" className="w-8" />
+            <video src="/main_logo.mp4" autoPlay loop muted className="w-20 " />
             <h1 className="text-5xl font-bold tracking-tight cursor-pointer">
               VIFS
             </h1>
@@ -52,10 +52,10 @@ const Header = () => {
             </button>
        
             {favorites.length > 0 && (
-            <div className="h-9 bg-gray-700 hover:bg-gradient-to-tr from-pink-600 to-pink-400 pt-1.5 px-6 cursor-pointer rounded">
+            <div className="h-9 bg-gray-700 hover:bg-gradient-to-tr from-pink-600 to-pink-400 pt-1.5 px-6 cursor-pointer rounded hidden lg:block">
               <Link to="/favorites">Favorite GIFs</Link>
             </div>
-          )}
+            )}
 
             <button onClick={() => setShowCategories(!showCategories)}>
                <HiMiniBars3BottomRight
@@ -89,7 +89,17 @@ const Header = () => {
 
         
       </div>
-      <GifSearch filter={filter} setFilter={setFilter}/>
+      <div className="flex flex-col gap-4">
+        {/* Mobile Favorites */}
+        {favorites.length > 0 && (
+          <div className="block lg:hidden">
+            <div className="w-full h-12 bg-gray-700 hover:bg-gradient-to-tr from-pink-600 to-pink-400 flex items-center justify-center cursor-pointer rounded">
+              <Link to="/favorites">Favorite GIFs</Link>
+            </div>
+          </div>
+        )}
+        <GifSearch filter={filter} setFilter={setFilter}/>
+      </div>
     </nav>
   );
 };
