@@ -26,7 +26,7 @@ const Header = () => {
         <Link to={"/"} className="flex gap-2">
             <img  src="https://www.sarasoueidan.com/assets/images/svg-vs-gif--animation-example.gif" alt="Giphy Logo" className="w-8" />
             <h1 className="text-5xl font-bold tracking-tight cursor-pointer">
-              VIFSs
+              VIFS
             </h1>
         </Link>
   
