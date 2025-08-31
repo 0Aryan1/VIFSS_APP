@@ -24,7 +24,7 @@ const Header = () => {
     <nav>
       <div className="relative flex gap-4 justify-between items-center mb-2">
         <Link to={"/"} className="flex gap-2">
-            <video src="/main_logo.mp4" autoPlay loop muted className="w-20 " />
+            <video src="/main_logo.mp4" autoPlay loop muted className="w-20 rounded" />
             <h1 className="text-6xl sm:text-5xl font-bold tracking-tight cursor-pointer">
               VIFS
             </h1>
