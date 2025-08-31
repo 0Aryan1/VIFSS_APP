@@ -178,11 +178,11 @@ const GifPage = () => {
            
            <Gif gif={gif} hover={false} />
 
-               {/* Mobile user details + favorite */}
-               {gif?.user && (<div className=''>
+               {/* Mobile user details + favorite    */}
+               {(<div className=''>
                 <div className='mb-2 font-normal text-gray-400 text-center bg-gradient-to-r from-gray-700/40 to-gray-600/40 rounded-lg'> Tap and Hold to Copy GIF</div>
                 <div className="flex sm:hidden items-center justify-between mt-3">
-                  <div className="flex gap-1">
+                  {gif?.user && (<div className="flex gap-1">
                     <img
                       src={gif?.user?.avatar_url}
                       alt={gif?.user?.display_name}
@@ -192,7 +192,7 @@ const GifPage = () => {
                       <div className="font-bold">{gif?.user?.display_name}</div>
                       <div className="faded-text">@{gif?.user?.username}</div>
                     </div>
-                  </div>
+                  </div>)}
                   <button
                     onClick={() => addToFavorites(gif.id)}
                     className="flex items-center"
