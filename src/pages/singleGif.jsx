@@ -190,9 +190,9 @@ const GifPage = () => {
                   <div className="faded-text">@{gif?.user?.username}</div>
                 </div>
 
-                <button className="ml-auto" onClick={shareGif}>
+{/*                 <button className="ml-auto" onClick={shareGif}>
                   <FaPaperPlane size={25} />
-                </button>
+                </button> */}
               </div>
                )}
           </div>
