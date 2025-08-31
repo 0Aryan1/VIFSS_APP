@@ -92,7 +92,9 @@ const GifPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="text-xl">Loading...</div>
+        {/* <div className="text-xl">Loading...</div> */}
+        <img 
+        src='https://media4.giphy.com/media/grNkIEN4dkiMXFLIE9/200w.webp?cid=9c3cd526xzbuco5o2gl3ugzuf5e6q380bq647tq5bp75ahbl&ep=v1_gifs_gifId&rid=200w.webp&ct=s' alt='logo'></img>
       </div>
     );
   }
