@@ -61,7 +61,7 @@ const GifPage = () => {
   }, [type, slug])
 
   // --- Share functionality ---
-  const shareGif = async () => {
+  //const shareGif = async () => {
     // try {
     //   if (navigator.share) {
     //     await navigator.share({
@@ -75,10 +75,10 @@ const GifPage = () => {
     // } catch (error) {
     //   console.error("Error sharing:", error)
     // }
-  }
+  //}
 
   // --- Embed functionality ---
-  const EmbedGif = async () => {
+  //const EmbedGif = async () => {
     // try {
     //   const embedCode = `<iframe src="${gif.embed_url}" width="480" height="270" frameBorder="0" allowFullScreen></iframe>`
     //   await navigator.clipboard.writeText(embedCode)
@@ -86,7 +86,7 @@ const GifPage = () => {
     // } catch (error) {
     //   console.error("Error copying embed code:", error)
     // }
-  }
+  //}
 
   // Show loading state
   if (loading) {
@@ -177,23 +177,30 @@ const GifPage = () => {
            <div className="faded-text truncate mb-2">{gif.title}</div>
            <Gif gif={gif} hover={false} />
 
-               {/* Mobile user details + share */}
+               {/* Mobile user details + favorite */}
                {gif?.user && (
-                <div className="flex sm:hidden gap-1 mt-3">
-                <img
-                  src={gif?.user?.avatar_url}
-                  alt={gif?.user?.display_name}
-                  className="h-14"
-                />
-                <div className="px-2">
-                  <div className="font-bold">{gif?.user?.display_name}</div>
-                  <div className="faded-text">@{gif?.user?.username}</div>
+                <div className="flex sm:hidden items-center justify-between mt-3">
+                  <div className="flex gap-1">
+                    <img
+                      src={gif?.user?.avatar_url}
+                      alt={gif?.user?.display_name}
+                      className="h-14"
+                    />
+                    <div className="px-2">
+                      <div className="font-bold">{gif?.user?.display_name}</div>
+                      <div className="faded-text">@{gif?.user?.username}</div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => addToFavorites(gif.id)}
+                    className="flex items-center"
+                  >
+                    <HiMiniHeart
+                      size={30}
+                      className={`${favorites.includes(gif.id) ? "text-red-500" : ""}`}
+                    />
+                  </button>
                 </div>
-
-{/*                 <button className="ml-auto" onClick={shareGif}>
-                  <FaPaperPlane size={25} />
-                </button> */}
-              </div>
                )}
           </div>
 
@@ -244,3 +251,5 @@ const GifPage = () => {
 }
 
 export default GifPage
+
+
