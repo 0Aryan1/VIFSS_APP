@@ -25,7 +25,7 @@ const Header = () => {
       <div className="relative flex gap-4 justify-between items-center mb-2">
         <Link to={"/"} className="flex gap-2">
             <video src="/main_logo.mp4" autoPlay loop muted className="w-20 " />
-            <h1 className="text-5xl font-bold tracking-tight cursor-pointer">
+            <h1 className="text-6xl sm:text-5xl font-bold tracking-tight cursor-pointer">
               VIFS
             </h1>
         </Link>
@@ -60,7 +60,7 @@ const Header = () => {
             <button onClick={() => setShowCategories(!showCategories)}>
                <HiMiniBars3BottomRight
                className="text-sky-400 block lg:hidden"
-               size={30}
+               size={50}
                />
             </button>
        </div>
