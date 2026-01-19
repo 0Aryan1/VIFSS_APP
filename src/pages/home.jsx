@@ -36,9 +36,9 @@ const Home = () => {
           <span className="text-2xl font-bold">Coming soon ☺️.</span>
         </div>
       ) : (
-        <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
+         <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
           {gifs.map((gif) => {
-             return <Gif gif={gif} key={gif.tittle}/>
+             return <Gif gif={gif} key={gif.id}/>
           })}
         </div>
       )}
