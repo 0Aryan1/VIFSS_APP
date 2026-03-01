@@ -6,7 +6,7 @@ import Category from './pages/category'
 import GifPage from './pages/singleGif'
 import SearchPage from './pages/search'
 import Favorites from './pages/favorites'
-import GifProvider from './context/GifContext'
+import {GifProvider} from './context/GifContext'
 
 
 

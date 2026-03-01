@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 const AppLayout = () => {
   return (
@@ -8,7 +8,7 @@ const AppLayout = () => {
        <div className='container px-6 py-4 mx-auto'>        {/*  // container make breakpoints diffrent for diffrent screen */}
       <Header/>
       <main>
-        <Outlet/>
+        <Outlet/>    {/* here it is where all our routes will be rendered */}
       </main>
       </div>
     </div>
