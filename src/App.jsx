@@ -6,6 +6,7 @@ import Category from './pages/category'
 import GifPage from './pages/singleGif'
 import SearchPage from './pages/search'
 import Favorites from './pages/favorites'
+import ApiTest from './pages/apiTest'
 import {GifProvider} from './context/GifContext'
 
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />,
+      },
+      {
+        path: "/api-test",
+        element: <ApiTest />,
       },
     ],
   },

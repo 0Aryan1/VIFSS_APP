@@ -260,12 +260,12 @@ const GifPage = () => {
                     
                   </button>
                   <button
-              onClick={downloadGif}
-              className="flex gap-5 items-center font-bold text-lg"
-            >
-              <MdOutlineFileDownload size={30} />
+                   onClick={downloadGif}
+                   className="flex gap-5 items-center font-bold text-lg"
+                    >
+                   <MdOutlineFileDownload size={30} />
               
-            </button>
+                  </button>
                 </div>
                 
                
@@ -311,6 +311,7 @@ const GifPage = () => {
         <div className="mt-6 mb-4 flex justify-center items-center w-full">
           <FilterGif />
         </div>
+        
         {/* Related GIFs */}
         <div className="mt-2">
           <span className="font-extrabold">Recommended GIFs</span>

@@ -101,7 +101,7 @@ const Header = () => {
           <div className="block lg:hidden">
             <Link
               to="/favorites"
-              className="w-full h-12 bg-gray-700 font-bold hover:bg-gradient-to-tr from-pink-600 to-pink-400 flex items-center justify-center cursor-pointer rounded block"
+              className="w-full h-12 bg-gray-700 font-bold hover:bg-gradient-to-tr from-pink-600 to-pink-400 flex items-center justify-center cursor-pointer rounded"
             >
               Favorite GIFs
             </Link>
